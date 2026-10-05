@@ -1,0 +1,92 @@
+{
+  "title": "Intelbras iSIC Cloud",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Conectar dispositivo Intelbras pela nuvem",
+        "description": "Informe o serial e o usuário/senha do gravador. A chave da aplicação Cloud e a senha P2P são fornecidas separadamente; não são o login da sua Conta Intelbras. Este projeto não distribui essas credenciais.",
+        "data": {
+          "serial": "Número de série",
+          "device_username": "Usuário do dispositivo",
+          "device_password": "Senha do dispositivo",
+          "channels": "Quantidade de canais",
+          "profile": "Perfil de vídeo",
+          "rtsp_port": "Porta RTSP remota",
+          "cloud_app_key": "Chave da aplicação Cloud (app_key)",
+          "cloud_p2p_password": "Senha P2P do Cloud"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Atualizar credenciais e configuração",
+        "description": "Informe o serial e o usuário/senha do gravador. A chave da aplicação Cloud e a senha P2P são fornecidas separadamente; não são o login da sua Conta Intelbras. Este projeto não distribui essas credenciais.",
+        "data": {
+          "device_username": "Usuário do dispositivo",
+          "device_password": "Senha do dispositivo",
+          "channels": "Quantidade de canais",
+          "profile": "Perfil de vídeo",
+          "rtsp_port": "Porta RTSP remota",
+          "cloud_app_key": "Chave da aplicação Cloud (app_key)",
+          "cloud_p2p_password": "Senha P2P do Cloud"
+        }
+      },
+      "reconfigure": {
+        "title": "Atualizar credenciais e configuração",
+        "description": "Informe o serial e o usuário/senha do gravador. A chave da aplicação Cloud e a senha P2P são fornecidas separadamente; não são o login da sua Conta Intelbras. Este projeto não distribui essas credenciais.",
+        "data": {
+          "device_username": "Usuário do dispositivo",
+          "device_password": "Senha do dispositivo",
+          "channels": "Quantidade de canais",
+          "profile": "Perfil de vídeo",
+          "rtsp_port": "Porta RTSP remota",
+          "cloud_app_key": "Chave da aplicação Cloud (app_key)",
+          "cloud_p2p_password": "Senha P2P do Cloud"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Não foi possível conectar ao dispositivo pela nuvem Intelbras.",
+      "invalid_auth": "O dispositivo rejeitou o usuário ou a senha.",
+      "invalid_serial": "Informe um serial ASCII válido com até 99 caracteres.",
+      "invalid_cloud_app_key": "Informe uma chave ASCII não vazia com até 32 caracteres.",
+      "invalid_cloud_p2p_password": "Informe uma senha P2P ASCII não vazia."
+    },
+    "abort": {
+      "already_configured": "Este número de série já foi configurado.",
+      "reauth_successful": "Credenciais atualizadas.",
+      "reconfigure_successful": "Configuração atualizada."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "tunnel": {
+        "name": "Túnel P2P"
+      }
+    },
+    "sensor": {
+      "tunnel_uptime": {
+        "name": "Tempo ativo do túnel"
+      },
+      "successful_starts": {
+        "name": "Inicializações do bridge"
+      },
+      "configured_channels": {
+        "name": "Canais configurados"
+      },
+      "stream_profile": {
+        "name": "Perfil de vídeo",
+        "state": {
+          "substream_h264": "Stream secundário (H.264)",
+          "mainstream_h265": "Stream principal (H.265)"
+        }
+      },
+      "local_port": {
+        "name": "Porta local do túnel"
+      }
+    }
+  },
+  "exceptions": {
+    "missing_cloud_credentials": {
+      "message": "Esta versão não inclui credenciais da aplicação Cloud. Reautentique a integração para informar sua app_key e senha P2P."
+    }
+  }
+}

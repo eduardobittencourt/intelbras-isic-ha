@@ -1,0 +1,9 @@
+* text=auto eol=lf
+*.png binary
+*.so binary
+qemu-arm-static binary
+t2u_runner binary
+ld-linux.so.3 binary
+libc.so.6 binary
+libdl.so.2 binary
+libm.so.6 binary

@@ -1,0 +1,92 @@
+{
+  "title": "Intelbras iSIC Cloud",
+  "config": {
+    "step": {
+      "user": {
+        "title": "Connect an Intelbras cloud device",
+        "description": "Enter the serial and recorder credentials. The Cloud application key and P2P password are supplied separately; they are not your Intelbras account login. This project does not distribute these credentials.",
+        "data": {
+          "serial": "Serial number",
+          "device_username": "Device username",
+          "device_password": "Device password",
+          "channels": "Number of channels",
+          "profile": "Video profile",
+          "rtsp_port": "Remote RTSP port",
+          "cloud_app_key": "Cloud application key (app_key)",
+          "cloud_p2p_password": "Cloud P2P password"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Update credentials and configuration",
+        "description": "Enter the serial and recorder credentials. The Cloud application key and P2P password are supplied separately; they are not your Intelbras account login. This project does not distribute these credentials.",
+        "data": {
+          "device_username": "Device username",
+          "device_password": "Device password",
+          "channels": "Number of channels",
+          "profile": "Video profile",
+          "rtsp_port": "Remote RTSP port",
+          "cloud_app_key": "Cloud application key (app_key)",
+          "cloud_p2p_password": "Cloud P2P password"
+        }
+      },
+      "reconfigure": {
+        "title": "Update credentials and configuration",
+        "description": "Enter the serial and recorder credentials. The Cloud application key and P2P password are supplied separately; they are not your Intelbras account login. This project does not distribute these credentials.",
+        "data": {
+          "device_username": "Device username",
+          "device_password": "Device password",
+          "channels": "Number of channels",
+          "profile": "Video profile",
+          "rtsp_port": "Remote RTSP port",
+          "cloud_app_key": "Cloud application key (app_key)",
+          "cloud_p2p_password": "Cloud P2P password"
+        }
+      }
+    },
+    "error": {
+      "cannot_connect": "Could not connect to the device through Intelbras Cloud.",
+      "invalid_auth": "The device rejected the username or password.",
+      "invalid_serial": "Enter a valid ASCII serial of at most 99 characters.",
+      "invalid_cloud_app_key": "Enter a nonempty ASCII application key of at most 32 characters.",
+      "invalid_cloud_p2p_password": "Enter a nonempty ASCII P2P password."
+    },
+    "abort": {
+      "already_configured": "This serial number is already configured.",
+      "reauth_successful": "Credentials updated.",
+      "reconfigure_successful": "Configuration updated."
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "tunnel": {
+        "name": "P2P tunnel"
+      }
+    },
+    "sensor": {
+      "tunnel_uptime": {
+        "name": "Tunnel uptime"
+      },
+      "successful_starts": {
+        "name": "Bridge starts"
+      },
+      "configured_channels": {
+        "name": "Configured channels"
+      },
+      "stream_profile": {
+        "name": "Stream profile",
+        "state": {
+          "substream_h264": "Substream (H.264)",
+          "mainstream_h265": "Main stream (H.265)"
+        }
+      },
+      "local_port": {
+        "name": "Local tunnel port"
+      }
+    }
+  },
+  "exceptions": {
+    "missing_cloud_credentials": {
+      "message": "This version does not bundle Cloud application credentials. Reauthenticate the integration to supply your app_key and P2P password."
+    }
+  }
+}

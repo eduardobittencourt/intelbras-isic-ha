@@ -1,0 +1,29 @@
+name: Feature request
+description: Suggest a focused improvement to the integration.
+title: "[Feature]: "
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or use case
+      description: What are you trying to accomplish?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed behavior
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+  - type: checkboxes
+    id: legal
+    attributes:
+      label: Contribution safety
+      options:
+        - label: This request does not contain vendor binaries, credentials, or confidential documentation.
+          required: true

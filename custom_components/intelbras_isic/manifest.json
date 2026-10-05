@@ -1,0 +1,12 @@
+{
+  "domain": "intelbras_isic",
+  "name": "Intelbras iSIC Cloud",
+  "codeowners": ["@eduardobittencourt"],
+  "config_flow": true,
+  "dependencies": ["ffmpeg", "stream"],
+  "documentation": "https://github.com/eduardobittencourt/intelbras-isic-ha",
+  "integration_type": "device",
+  "iot_class": "cloud_polling",
+  "issue_tracker": "https://github.com/eduardobittencourt/intelbras-isic-ha/issues",
+  "version": "0.3.0"
+}
