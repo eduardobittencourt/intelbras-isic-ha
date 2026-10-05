@@ -19,7 +19,7 @@ classifiers = [
 test = [
   "av==17.0.1",
   "ha-ffmpeg==3.2.2",
-  "numpy==2.3.2",
+  "numpy==2.5.3",
   "pre-commit==4.3.0",
   "PyTurboJPEG==1.8.3",
   "pytest-cov==7.1.0",
