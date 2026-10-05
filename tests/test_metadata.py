@@ -14,7 +14,7 @@ def test_manifest_metadata() -> None:
     )
 
     assert manifest["domain"] == "intelbras_isic"
-    assert manifest["version"] == "0.3.0"
+    assert manifest["version"] == "0.3.1"
     assert manifest["documentation"].startswith(
         "https://github.com/eduardobittencourt/"
     )

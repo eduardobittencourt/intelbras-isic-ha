@@ -20,6 +20,7 @@ from typing import Self
 
 from .discovery import (
     ProtocolError,
+    Server,
     discovery_request,
     discovery_response,
     heartbeat_request,
@@ -163,16 +164,42 @@ class Transport:
                     return packet
         raise TransportError("Cloud exchange timed out")
 
+    def _discover(self) -> tuple[Server, ...]:
+        """Try alternate DNS addresses when a bootstrap endpoint is unavailable."""
+        config = self.configuration
+        addresses = tuple(
+            dict.fromkeys(
+                result[4][0]
+                for result in socket.getaddrinfo(
+                    config.server, config.server_port, socket.AF_INET, socket.SOCK_DGRAM
+                )
+            )
+        )[:8]
+        self.metrics["bootstrap_endpoints"] = len(addresses)
+        for address in addresses:
+            if self._stop.is_set():
+                raise TransportError("Connection cancelled")
+            self.metrics["bootstrap_attempts"] += 1
+            try:
+                packet = self._exchange(
+                    self._main,
+                    (address, config.server_port),
+                    discovery_request(),
+                    5002,
+                    2,
+                )
+                return discovery_response(packet)
+            except (TransportError, ProtocolError):
+                continue
+        raise TransportError("No Cloud discovery endpoint responded")
+
     def connect(self, timeout: float = 15) -> None:
         if self._main is not None or self._stop.is_set():
             raise TransportError("Create a new transport for each session")
         try:
             config = self.configuration
             self._main = self._socket_new()
-            bootstrap = (socket.gethostbyname(config.server), config.server_port)
-            servers = discovery_response(
-                self._exchange(self._main, bootstrap, discovery_request(), 5002, 4)
-            )
+            servers = self._discover()
             self.metrics["discovered_servers"] = len(servers)
             for server in servers[:3]:
                 if self._stop.is_set():

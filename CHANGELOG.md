@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.1] - 2026-10-05
+
+- Try alternate IPv4 DNS addresses for Cloud discovery when the first endpoint
+  times out or returns an invalid response. Limit retries and honor cancellation.
+- Add regression tests for bootstrap failover and document the HACS installation
+  and migration validation on the owner's Home Assistant instance.
+
 ## [0.3.0] - 2026-10-05
 
 First public, source-only release.

@@ -51,6 +51,11 @@ privada, a integração preserva os dispositivos e identificadores das entidades
 mas pede reautenticação para receber as credenciais Cloud antes embutidas.
 Mantenha esses valores na sua configuração privada antes de atualizar.
 
+O HACS pode preservar arquivos da instalação manual anterior. Após fazer
+backup, remova a pasta antiga `/config/custom_components/intelbras_isic/bridge/`
+se ela existir; preserve o novo arquivo `bridge.py`. Essa pasta contém o runtime
+nativo anterior, que não é mais utilizado.
+
 Credenciais ficam na entrada de configuração do HA e são removidas dos
 diagnósticos. Não publique `.storage`, credenciais, seriais ou imagens.
 
@@ -68,3 +73,4 @@ firmwares e redes ainda precisam de validação.
 
 Veja [solução de problemas](troubleshooting.md), [arquitetura](architecture.md),
 [origem do transporte](transport-provenance.md) e [como contribuir](../CONTRIBUTING.md).
+Veja também a [validação da instalação pelo HACS](hacs-install-validation.md).

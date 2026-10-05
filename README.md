@@ -91,6 +91,12 @@ versions bundled Cloud credentials, upgrading prompts for reauthentication to
 supply those parameters explicitly. Keep your existing parameters in your
 private configuration before upgrading. Do not share them in issues or logs.
 
+HACS can retain files from an earlier manual installation. After making a
+backup, remove the obsolete directory
+`/config/custom_components/intelbras_isic/bridge/` if present; keep the new
+`bridge.py` file. That directory belongs to the old native runtime and is no
+longer used.
+
 ## Entities
 
 | Entity | Purpose | Default |
@@ -125,6 +131,8 @@ Intelbras model, firmware or network.
 
 See [Troubleshooting](docs/troubleshooting.md),
 [Architecture](docs/architecture.md) and [Security](SECURITY.md).
+The release was also installed through HACS on the owner's HA instance;
+see [Installation validation](docs/hacs-install-validation.md).
 
 ## Contribute
 
