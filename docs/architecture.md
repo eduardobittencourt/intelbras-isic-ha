@@ -34,3 +34,5 @@ The public repository begins with source-only history. The implementation uses
 vendor Cloud endpoints and application credentials supplied in the private HA
 config entry; it does not contain those credentials. Existing version-1 entries
 migrate to version 2 and request reauthentication if the Cloud fields are missing.
+
+The implemented wire subset is described in [Protocol](protocol.md).
