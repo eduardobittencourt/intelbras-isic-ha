@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.3.2] - 2026-10-09
+
+- Use the official Intelbras iSIC Lite app icon in Home Assistant and the README.
+- Remove the generic camera/cloud artwork and document the vendor artwork source
+  and separate rights in the third-party notices.
+
 ## [0.3.1] - 2026-10-05
 
 - Try alternate IPv4 DNS addresses for Cloud discovery when the first endpoint

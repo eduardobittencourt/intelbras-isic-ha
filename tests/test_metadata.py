@@ -2,6 +2,8 @@
 
 import importlib
 import json
+import re
+import tomllib
 from pathlib import Path
 
 ROOT = Path(__file__).parents[1]
@@ -14,7 +16,9 @@ def test_manifest_metadata() -> None:
     )
 
     assert manifest["domain"] == "intelbras_isic"
-    assert manifest["version"] == "0.3.1"
+    project = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]
+    assert re.fullmatch(r"\d+\.\d+\.\d+", manifest["version"])
+    assert manifest["version"] == project["version"]
     assert manifest["documentation"].startswith(
         "https://github.com/eduardobittencourt/"
     )

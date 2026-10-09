@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="custom_components/intelbras_isic/brand/icon.png" alt="Community camera and cloud icon" width="128">
+  <img src="custom_components/intelbras_isic/brand/icon.png" alt="Official Intelbras iSIC Lite app icon" width="128">
 </p>
 
 <h1 align="center">Intelbras iSIC Cloud for Home Assistant</h1>
@@ -21,7 +21,8 @@
 
 This is an independent community project, without affiliation, endorsement or
 support from Intelbras. Intelbras and iSIC are trademarks of their respective
-owner. The code and artwork in this public repository are MIT licensed.
+owner. The original code is MIT licensed. The official iSIC Lite icon belongs to
+Intelbras and is excluded from the MIT License; see [third-party notices](THIRD_PARTY_NOTICES.md).
 
 ## What it does
 

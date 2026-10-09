@@ -6,7 +6,9 @@ com descoberta pelo Cloud e transporte P2P escrito em Python. Cria uma entidade
 Não instala DLL proprietária, SDK nativo, QEMU ou rootfs ARM.
 
 Este é um projeto independente, sem afiliação, endosso ou suporte da Intelbras.
-O código e o ícone do projeto usam licença MIT.
+O código original usa licença MIT. O ícone oficial do iSIC Lite pertence à
+Intelbras e não está coberto pela licença MIT; veja os
+[avisos de terceiros](../THIRD_PARTY_NOTICES.md).
 
 ## Requisitos
 
