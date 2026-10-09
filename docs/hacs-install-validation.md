@@ -75,3 +75,29 @@ gravador. Essa verificação levou aproximadamente seis segundos.
 Esta evidência cobre o equipamento e a rede testados. Relay, IPv6, outros
 firmwares e sessões de horas continuam pendentes. Novas instalações precisam
 fornecer os dois parâmetros Cloud separadamente; o HACS não os distribui.
+
+## Atualização do ícone: v0.3.2 (2026-10-09)
+
+A release `v0.3.2` substituiu o desenho genérico pelo ícone oficial do aplicativo
+Intelbras iSIC Lite. A origem e os direitos da imagem estão em
+[avisos de terceiros](../THIRD_PARTY_NOTICES.md).
+
+- Instalador WebSocket do HACS utilizado no Home Assistant 2026.10.0.
+- Os 23 arquivos instalados conferiram com os hashes SHA-256 da release, sem
+  arquivos ausentes, extras ou modificados, desconsiderando `__pycache__`.
+- Checagem de configuração aprovada e Core reiniciado com sucesso.
+- A mesma entrada de configuração voltou a `loaded`; as oito câmeras e as 13
+  entidades habilitadas permaneceram disponíveis, com identificadores preservados.
+- Oito snapshots JPEG válidos obtidos pela API de câmera após o reinício.
+- HACS confirmou `v0.3.2` instalada, sem atualização pendente.
+- As oito variantes de ícone/logo, incluindo tema escuro e `@2x`, retornaram
+  HTTP 200 e `image/png` pelo endpoint `/api/brands/integration/intelbras_isic/`.
+  Todas retornaram os mesmos bytes do ícone oficial, conforme seu SHA-256.
+- 44 testes, Ruff e formatação aprovados; Tests, Hassfest e HACS aprovados no
+  GitHub para o commit da release.
+
+A verificação visual foi do arquivo oficial incluído no projeto. O endpoint
+utilizado pela interface do HA foi validado em todas as variantes; não houve
+inspeção de uma página renderizada no navegador. Snapshots foram processados
+somente em memória. A atualização não alterou o transporte de vídeo; não foi
+repetido o teste HLS da release anterior.
