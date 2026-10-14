@@ -101,3 +101,37 @@ utilizado pela interface do HA foi validado em todas as variantes; não houve
 inspeção de uma página renderizada no navegador. Snapshots foram processados
 somente em memória. A atualização não alterou o transporte de vídeo; não foi
 repetido o teste HLS da release anterior.
+
+## Manutenção: v0.3.3 (2026-10-14)
+
+A release atualiza dependências de desenvolvimento e CI, ajusta a formatação
+Python 3.14 e adiciona uma matriz de compatibilidade. Não implementa o supervisor
+de reconexão, relay ou IPv6 descritos no [roteiro de robustez](robustness.md).
+
+- 44 testes aprovados no HA mínimo 2026.9.4 e no estável 2026.10.1, com os
+  respectivos harnesses 0.13.367 e 0.13.372. Consistência de dependências, Ruff e
+  formatação aprovados localmente e no CI; Hassfest e HACS também aprovados.
+- NumPy selecionado pelo harness, que exige 2.3.2. A atualização isolada para
+  2.5.3 era incompatível; o pin direto redundante foi removido.
+- Backup do código anterior e download de `v0.3.3` pelo instalador WebSocket do
+  HACS no HA 2026.10.1. Os 23 arquivos conferiram por SHA-256 com a release, sem
+  arquivos ausentes, extras ou modificados, desconsiderando `__pycache__`.
+- `ha core check` aprovado e Core reiniciado. Entrada `loaded`, oito câmeras e
+  13 entidades habilitadas disponíveis, com os mesmos identificadores.
+- Oito snapshots JPEG decodificados em 704×480 após o reinício.
+- Oito canais HLS simultâneos pela API do HA por 301 segundos: 2.072 quadros
+  H.264 decodificados por canal em 704×480, 16.576 no total, sem erro de
+  playlist, download ou decodificação. O túnel permaneceu na primeira sessão,
+  sem recriação durante a validação.
+- Diagnósticos pela API confirmaram serial, usuário/senha do gravador, app_key e
+  senha P2P ocultos; túnel pronto e nenhum erro de bridge registrado.
+- Recarga oficial pela API concluída: entrada carregada, oito câmeras e 13
+  entidades habilitadas disponíveis, identificadores preservados e um novo
+  snapshot decodificado em 704×480.
+
+Os pacotes de mídia em execução continuam sob controle do HA: PyAV 19.0.0,
+NumPy 2.3.2, PyTurboJPEG 1.8.3 e ha-ffmpeg 3.2.2. A atualização do PyTurboJPEG
+para 2.5.0 é do ambiente de testes do projeto, sem substituição manual das
+dependências do Core. Imagens e segmentos são processados somente em memória.
+O teste de cinco minutos não substitui uma validação de 24–72 horas nem cobre
+recuperação após interrupção de rede.
