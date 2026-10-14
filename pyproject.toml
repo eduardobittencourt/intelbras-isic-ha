@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "intelbras-isic-ha"
-version = "0.3.2"
+version = "0.3.3"
 description = "Intelbras iSIC Cloud custom integration for Home Assistant"
 readme = "README.md"
 requires-python = ">=3.14.2"
@@ -19,11 +19,10 @@ classifiers = [
 test = [
   "av==19.0.0",
   "ha-ffmpeg==3.2.2",
-  "numpy==2.3.2",
   "pre-commit==4.3.0",
   "PyTurboJPEG==2.5.0",
   "pytest-cov==7.1.0",
-  "pytest-homeassistant-custom-component==0.13.368",
+  "pytest-homeassistant-custom-component>=0.13.367,<=0.13.372",
   "ruff==0.16.10",
 ]
 

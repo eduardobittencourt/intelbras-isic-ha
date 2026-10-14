@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.3] - 2026-10-14
+
+- Refresh CI actions, PyAV, PyTurboJPEG and Ruff, including Python 3.14 formatting.
+- Test the minimum Home Assistant 2026.9.4 and stable 2026.10.1 with their matching
+  test harnesses. Let the harness supply its required NumPy version instead of
+  maintaining a conflicting direct pin.
+- Document the remaining reliability work: automatic session recovery, channel
+  isolation, transport diagnostics, sustained-operation tests and protocol coverage.
+
 ## [0.3.2] - 2026-10-09
 
 - Use the official Intelbras iSIC Lite app icon in Home Assistant and the README.
