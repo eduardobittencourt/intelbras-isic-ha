@@ -17,7 +17,7 @@ classifiers = [
 
 [project.optional-dependencies]
 test = [
-  "av==17.0.1",
+  "av==19.0.0",
   "ha-ffmpeg==3.2.2",
   "numpy==2.3.2",
   "pre-commit==4.3.0",
