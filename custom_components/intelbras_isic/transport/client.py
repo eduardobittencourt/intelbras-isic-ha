@@ -189,7 +189,7 @@ class Transport:
                     2,
                 )
                 return discovery_response(packet)
-            except (TransportError, ProtocolError):
+            except TransportError, ProtocolError:
                 continue
         raise TransportError("No Cloud discovery endpoint responded")
 
@@ -223,7 +223,7 @@ class Transport:
                     )
                     self._server = endpoint
                     break
-                except (TransportError, ProtocolError):
+                except TransportError, ProtocolError:
                     continue
             if self._server is None:
                 raise TransportError("No server accepted application registration")
@@ -559,7 +559,7 @@ class LoopbackProxy:
                         if not payload:
                             break
                         client.sendall(payload)
-                except (OSError, TransportError):
+                except OSError, TransportError:
                     pass
                 finally:
                     with suppress(OSError):
@@ -577,7 +577,7 @@ class LoopbackProxy:
                 if not payload:
                     break
                 stream.send(payload)
-        except (OSError, TransportError):
+        except OSError, TransportError:
             pass
         finally:
             if stream is not None:

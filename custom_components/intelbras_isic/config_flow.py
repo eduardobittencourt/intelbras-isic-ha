@@ -99,7 +99,7 @@ async def _async_validate(data: dict[str, Any]) -> dict[str, str]:
         await async_probe(url, data[CONF_DEVICE_USERNAME], data[CONF_DEVICE_PASSWORD])
     except RtspAuthError:
         return {"base": "invalid_auth"}
-    except (BridgeError, RtspError, OSError, TimeoutError):
+    except BridgeError, RtspError, OSError, TimeoutError:
         return {"base": "cannot_connect"}
     finally:
         await bridge.async_stop()

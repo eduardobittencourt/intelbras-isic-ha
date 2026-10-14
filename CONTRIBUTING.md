@@ -27,6 +27,11 @@ ruff format --check .
 pytest
 ```
 
+The test extra accepts the harness versions used by CI for HA 2026.9.4 and
+2026.10.1. To reproduce one environment, add
+`pytest-homeassistant-custom-component==0.13.367` (minimum) or `==0.13.372`
+(current stable) to the install command. NumPy is selected by that harness.
+
 ## Pull requests
 
 - Keep one logical change per pull request.

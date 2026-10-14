@@ -36,3 +36,5 @@ config entry; it does not contain those credentials. Existing version-1 entries
 migrate to version 2 and request reauthentication if the Cloud fields are missing.
 
 The implemented wire subset is described in [Protocol](protocol.md).
+Prioritized lifecycle, isolation and validation work is described in the
+[reliability roadmap](robustness.md).
