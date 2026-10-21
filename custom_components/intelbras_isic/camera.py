@@ -43,7 +43,7 @@ class IsicCamera(IsicEntity, Camera):
         self._channel = channel
         serial = entry.data[CONF_SERIAL]
         self._attr_unique_id = f"{serial}_channel_{channel}"
-        self._attr_name = f"Canal {channel}"
+        self._attr_name = f"Channel {channel}"
 
     @property
     def available(self) -> bool:

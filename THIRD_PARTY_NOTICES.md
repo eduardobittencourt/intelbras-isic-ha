@@ -19,7 +19,7 @@ this public repository or its public Git history.
 The private predecessor is retained separately and is not part of this release.
 Protocol research included inspection of that reference binary and tests with
 the project owner's recorder; this was not clean-room development. See
-[Transport provenance](docs/transport-provenance.md).
+[Transport provenance](docs/reference/provenance.md).
 
 The implementation uses the standard TEA algorithm and MD5 to interoperate with
 a legacy wire format. The transport uses the Python standard library; Home

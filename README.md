@@ -17,7 +17,7 @@
   <a href="LICENSE"><img alt="MIT license" src="https://img.shields.io/badge/license-MIT-blue"></a>
 </p>
 
-[Português](docs/README.pt-BR.md)
+[Documentation](docs/README.md)
 
 This is an independent community project, without affiliation, endorsement or
 support from Intelbras. Intelbras and iSIC are trademarks of their respective
@@ -44,12 +44,12 @@ from integration diagnostics.
 - A **Cloud application key (`app_key`) and P2P password**, supplied separately.
 - Outbound internet connectivity that permits direct UDP P2P with the recorder.
 
-**Cloud credentials are not included.** They are application protocol parameters,
-not the email/password of your Conta Intelbras and not the recorder password.
-There is currently no implemented account-login flow that obtains them. Installing
-through HACS does not provide them. If you do not already have credentials you
-are authorized to use, this release cannot complete device setup. See
-[Cloud credentials and research](docs/cloud-credentials.md).
+**Cloud parameters are not included.** They are application constants, separate
+from your Conta Intelbras login and recorder password. The integration does not
+obtain them through account login. Follow the
+[credential extraction guide](docs/guides/credentials.md) to locate them in your
+own copy of iSIC Lite. Static extraction and the P2P argument mapping were
+verified for app version 2.8.6; the guide does not publish the values.
 
 ## Install through HACS
 
@@ -98,6 +98,10 @@ backup, remove the obsolete directory
 `bridge.py` file. That directory belongs to the old native runtime and is no
 longer used.
 
+Version 0.3.4 removes Portuguese interface translations. If you update by copying
+files over an existing manual installation, remove the obsolete
+`translations/pt-BR.json` if it remains; keep `translations/en.json`.
+
 ## Entities
 
 | Entity | Purpose | Default |
@@ -127,18 +131,22 @@ Intelbras model, firmware or network.
   the recorder; actual codec depends on its configuration.
 - A failed transport is recreated when the next camera source is requested;
   reconnecting an already-running video stream automatically needs further work.
+- The legacy protocol does not provide transport confidentiality: discovery and
+  registration use TEA keyed by the transmitted header, the P2P password is sent
+  as an MD5 hash, and tunneled RTSP/video crosses the internet without encryption.
+  The loopback-only proxy protects its local listener, not that internet path.
 - Intelbras Cloud remains an external dependency. Changes to its protocol,
   credentials or availability can interrupt connectivity.
 
-See [Troubleshooting](docs/troubleshooting.md),
-[Architecture](docs/architecture.md) and [Security](SECURITY.md).
+See [Troubleshooting](docs/guides/troubleshooting.md),
+[Architecture](docs/reference/architecture.md) and [Security](SECURITY.md).
 The release was also installed through HACS on the owner's HA instance;
-see [Installation validation](docs/hacs-install-validation.md).
+see [Validation record](docs/development/validation.md).
 
 ## Contribute
 
-Community research can help document supported credential provisioning, improve
-relay/IPv6 support and test more models. Please contribute original code and
+Community research can help maintain the extraction procedure across app
+versions, improve relay/IPv6 support, and test more models. Please contribute original code and
 sanitized observations; keep vendor binaries, real credentials, serials and
 camera images out of public contributions.
 
@@ -150,7 +158,7 @@ pytest
 ```
 
 See [CONTRIBUTING.md](CONTRIBUTING.md),
-[Transport provenance](docs/transport-provenance.md) and
+[Transport provenance](docs/reference/provenance.md) and
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). The public history begins with
 source-only code. Protocol research included inspection of the private reference
 binary; this was not a clean-room implementation.

@@ -9,7 +9,8 @@ The integration has three layers:
 
 The TCP proxy explicitly binds `127.0.0.1` on an ephemeral port. UDP sockets
 handle cloud and peer traffic. Home Assistant and FFmpeg authenticate directly
-to the remote recorder through the tunnel, using RTSP-over-TCP. The transport does not launch subprocesses or load vendor libraries.
+to the remote recorder through the tunnel, using RTSP-over-TCP. The transport
+does not launch subprocesses or load vendor libraries.
 
 ## Runtime lifecycle
 
@@ -23,13 +24,13 @@ to the remote recorder through the tunnel, using RTSP-over-TCP. The transport do
 
 ## Packaging boundary
 
-The independently written transport lives in the local
-`intelbras-isic-transport` package and is vendored into `transport/` while it has
-no published version. It uses Python's standard library only. Its standalone
+The independently written transport is included directly in
+`custom_components/intelbras_isic/transport/`. It uses Python's standard library
+only and does not require a separately published transport package. Transport
 tests cover packet loss, reordering, malformed messages and buffer bounds;
-the integration tests cover the asynchronous adapter lifecycle.
+integration tests cover the asynchronous adapter lifecycle.
 
-See [Transport provenance](transport-provenance.md) for the research method.
+See [Transport provenance](provenance.md) for the research method.
 The public repository begins with source-only history. The implementation uses
 vendor Cloud endpoints and application credentials supplied in the private HA
 config entry; it does not contain those credentials. Existing version-1 entries
@@ -37,4 +38,8 @@ migrate to version 2 and request reauthentication if the Cloud fields are missin
 
 The implemented wire subset is described in [Protocol](protocol.md).
 Prioritized lifecycle, isolation and validation work is described in the
-[reliability roadmap](robustness.md).
+[reliability roadmap](../development/roadmap.md).
+
+Cloud parameter roles and APK extraction are documented in the
+[credential guide](../guides/credentials.md). Historical test evidence is
+collected in [Validation](../development/validation.md).

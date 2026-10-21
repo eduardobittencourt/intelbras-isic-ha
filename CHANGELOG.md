@@ -1,5 +1,14 @@
 # Changelog
 
+## [0.3.4] - 2026-10-21
+
+- Consolidate documentation into English user guides, technical reference, and
+  development evidence, with a single documentation index.
+- Document verified static extraction of Cloud application parameters from
+  iSIC Lite 2.8.6 without distributing the values.
+- Remove Portuguese documentation and interface translations. Default camera
+  names now use "Channel"; camera unique identifiers remain unchanged.
+
 ## [0.3.3] - 2026-10-14
 
 - Refresh CI actions, PyAV, PyTurboJPEG and Ruff, including Python 3.14 formatting.

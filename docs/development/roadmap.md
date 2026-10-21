@@ -13,9 +13,10 @@ cleans up the worker, queues and packet windows have bounds, and the proxy binds
 only to loopback. Tests cover discovery failover, retransmission, reordering,
 duplicate packets, malformed messages and lifecycle cleanup.
 
-The 44-test suite currently reports 65% branch-inclusive coverage. The network
-client is at 57%, the RTSP probe at 17% and the camera platform at 51%. These
-figures identify unexercised paths; they do not measure field reliability.
+At the time of the assessment, the 44-test suite reported 65% branch-inclusive
+coverage. The network client was at 57%, the RTSP probe at 17% and the camera
+platform at 51%. These figures identify unexercised paths; they do not measure
+field reliability.
 
 ## 1. Recover an existing session automatically
 
@@ -83,8 +84,11 @@ must agree on the release being validated.
 
 ## 5. Expand access and protocol coverage
 
-New users still need separately supplied Cloud application credentials. A
-documented, authorized provisioning flow is a prerequisite for broad adoption.
+New users still need separately supplied Cloud application parameters. The
+[credential guide](../guides/credentials.md) now documents static extraction for
+iSIC Lite 2.8.6. That does not provide account-based provisioning or remove the
+service and permission dependencies described in
+[Provenance](../reference/provenance.md).
 Cloud relay, IPv6 and legacy peers without VDT remain unimplemented; direct
 IPv4 success does not establish support for those paths.
 
@@ -95,3 +99,7 @@ session recovery or protocol coverage.
 
 The implementation order should favor session recovery, isolation and
 diagnostics before expanding the supported network/protocol surface.
+
+Historical transport and installation checks are consolidated in the
+[validation record](validation.md); they do not establish the acceptance criteria
+above as completed.

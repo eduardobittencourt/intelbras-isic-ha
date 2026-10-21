@@ -8,6 +8,15 @@ Open an issue for behavioral changes or protocol work. Never include real
 credentials, serial numbers, camera frames, APK contents, or additional vendor
 binaries in an issue or pull request.
 
+## Documentation
+
+Write documentation, interface text, comments, and contribution descriptions in
+English. Use the [documentation index](docs/README.md) to choose the right
+location: user procedures belong in `docs/guides/`, implementation details in
+`docs/reference/`, and plans or dated evidence in `docs/development/`. Update
+incoming links when moving a document. Record test dates and limitations
+separately from current behavior. Do not add duplicate language versions.
+
 ## Development setup
 
 Use Python 3.14 or newer:
@@ -36,7 +45,8 @@ The test extra accepts the harness versions used by CI for HA 2026.9.4 and
 
 - Keep one logical change per pull request.
 - Add or update tests for behavior changes.
-- Update translations and documentation when user-visible behavior changes.
+- Update English interface strings and documentation when user-visible behavior
+  changes. Keep `strings.json` and `translations/en.json` consistent.
 - Use conventional commit prefixes where practical (`feat:`, `fix:`,
   `docs:`, `test:`, `chore:`).
 - Confirm that logs and diagnostics do not expose credentials.

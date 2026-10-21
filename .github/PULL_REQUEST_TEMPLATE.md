@@ -6,7 +6,7 @@
 
 - [ ] Ruff passes
 - [ ] Tests pass
-- [ ] User-visible changes are documented and translated
+- [ ] User-visible changes and interface text are documented in English
 - [ ] No credentials, serials, camera images, or vendor-only artifacts were added
 
 ## Home Assistant impact

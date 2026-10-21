@@ -14,8 +14,9 @@ QEMU binary, but still need real hardware validation.
 ## Cannot connect
 
 Check that the device is online in iSIC Lite and that Home Assistant has
-outbound internet access. Confirm the supplied Cloud application key/P2P password, serial and remote RTSP port. Port `554`
-is the usual default.
+outbound internet access. Confirm the supplied Cloud application key/P2P
+password, serial and remote RTSP port. Port `554` is the usual default. See
+[Cloud credentials](credentials.md) for the field mapping and extraction steps.
 
 ## Invalid authentication
 
@@ -31,12 +32,13 @@ the cloud transport forwards TCP streams rather than separate RTP UDP ports.
 ## Diagnostics
 
 Open the integration's device page and download diagnostics. Serial number,
-username, device password, Cloud application key and P2P password are redacted. Review diagnostics before opening an
-issue and remove any additional information you consider sensitive.
+username, device password, Cloud application key and P2P password are redacted.
+Review diagnostics before opening an issue and remove any additional information
+you consider sensitive.
 
 ## Missing Cloud credentials after upgrading
 
 The public release does not contain the Cloud credentials bundled by the private
 preview. Complete the reauthentication prompt with your privately supplied
 parameters. Device entries and entity identifiers are preserved. See
-[Cloud credentials](cloud-credentials.md).
+[Cloud credentials](credentials.md).
