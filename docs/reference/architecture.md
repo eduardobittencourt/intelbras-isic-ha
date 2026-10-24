@@ -22,6 +22,15 @@ does not launch subprocesses or load vendor libraries.
 - Failed and cancelled startup closes and joins the worker being established.
 - A stopped peer worker is recreated when a camera source is requested.
 
+## Cloud registration failover
+
+After discovery, the transport sends heartbeat probes to all distinct returned
+IPv4 endpoints. It registers with a responding server whose reply passes
+validation, continuing after malformed replies or failed registration. Heartbeat
+probes are retried up to three times; a 15-second total deadline bounds this
+phase, with cancellation checked while waiting. This avoids depending on the
+order of the discovery list.
+
 ## Packaging boundary
 
 The independently written transport is included directly in

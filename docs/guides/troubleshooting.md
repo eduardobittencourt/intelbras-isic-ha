@@ -18,6 +18,10 @@ outbound internet access. Confirm the supplied Cloud application key/P2P
 password, serial and remote RTSP port. Port `554` is the usual default. See
 [Cloud credentials](credentials.md) for the field mapping and extraction steps.
 
+From v0.3.5, registration probes all discovered Cloud endpoints within a bounded
+window. Earlier releases only try the first three servers and can fail even when
+other servers are available. Update through HACS if affected.
+
 ## Invalid authentication
 
 The username and password belong to the recorder or camera, not necessarily to

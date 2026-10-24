@@ -193,6 +193,55 @@ class Transport:
                 continue
         raise TransportError("No Cloud discovery endpoint responded")
 
+    def _register(self, servers: tuple[Server, ...], timeout: float = 15) -> None:
+        """Probe all discovered endpoints within one bounded registration window."""
+        config = self.configuration
+        endpoints = dict.fromkeys((server.address, server.port) for server in servers)
+        deadline = time.monotonic() + timeout
+        # Probe together so unavailable endpoints cannot hide healthy servers
+        # later in the discovery list. Retry lost heartbeats up to three times.
+        for _ in range(3):
+            if self._stop.is_set():
+                raise TransportError("Connection cancelled")
+            if time.monotonic() >= deadline:
+                break
+            for endpoint in endpoints:
+                self._main.sendto(heartbeat_request(), endpoint)
+            round_deadline = min(deadline, time.monotonic() + 1)
+            while (remaining_round := round_deadline - time.monotonic()) > 0:
+                if self._stop.is_set():
+                    raise TransportError("Connection cancelled")
+                readable, _, _ = select.select(
+                    [self._main], [], [], min(0.1, remaining_round)
+                )
+                if not readable:
+                    continue
+                packet, endpoint = self._main.recvfrom(65535)
+                if endpoint not in endpoints:
+                    continue
+                try:
+                    heartbeat_response(packet)
+                    remaining = deadline - time.monotonic()
+                    if remaining <= 0:
+                        break
+                    self.metrics["registration_attempts"] += 1
+                    reply = self._exchange(
+                        self._main,
+                        endpoint,
+                        registration_request(config.application_key, self.identity),
+                        1013,
+                        min(3, remaining),
+                    )
+                    self._interval = registration_response(
+                        reply, config.application_key
+                    )
+                except TransportError, ProtocolError:
+                    continue
+                self._server = endpoint
+                self.metrics["verified_registrations"] += 1
+                return
+        raise TransportError("No server accepted application registration")
+
     def connect(self, timeout: float = 15) -> None:
         if self._main is not None or self._stop.is_set():
             raise TransportError("Create a new transport for each session")
@@ -201,33 +250,7 @@ class Transport:
             self._main = self._socket_new()
             servers = self._discover()
             self.metrics["discovered_servers"] = len(servers)
-            for server in servers[:3]:
-                if self._stop.is_set():
-                    raise TransportError("Connection cancelled")
-                endpoint = (server.address, server.port)
-                try:
-                    heartbeat_response(
-                        self._exchange(
-                            self._main, endpoint, heartbeat_request(), 1001, 3
-                        )
-                    )
-                    reply = self._exchange(
-                        self._main,
-                        endpoint,
-                        registration_request(config.application_key, self.identity),
-                        1013,
-                        3,
-                    )
-                    self._interval = registration_response(
-                        reply, config.application_key
-                    )
-                    self._server = endpoint
-                    break
-                except TransportError, ProtocolError:
-                    continue
-            if self._server is None:
-                raise TransportError("No server accepted application registration")
-            self.metrics["verified_registrations"] += 1
+            self._register(servers)
             if self._stop.is_set():
                 raise TransportError("Connection cancelled")
             self._socket = self._socket_new()
