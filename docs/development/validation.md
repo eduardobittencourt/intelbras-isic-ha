@@ -172,3 +172,24 @@ The five-minute v0.3.3 run does not replace a 24–72 hour test and did not exer
 recovery after a network interruption. Current implementation behavior is
 separate from the dated observations above; see the [architecture](../reference/architecture.md)
 and [reliability roadmap](roadmap.md).
+
+## Cloud registration failover: v0.3.5, October 24, 2026
+
+The installed v0.3.4 transport discovered 27 endpoints but failed heartbeat
+requests to its first three candidates, preventing registration. A bounded
+probe of the full list found 16 responsive endpoints; the first seven did not
+respond. The same recorder configuration established a P2P session when a
+responsive endpoint later in the list was selected in an isolated process.
+
+The candidate v0.3.5 client was then evaluated in memory inside the existing HA
+container, without replacing the installed integration or starting another HA
+instance. It discovered 27 endpoints, registered on its first responsive
+candidate, and established the recorder's P2P session in 0.89 seconds. The
+session was still alive five seconds later and was explicitly closed.
+
+Local validation passed 53 tests, Ruff, and formatting. Regression cases cover
+healthy endpoints after seven unavailable candidates, heartbeat retransmission,
+deduplication, invalid packets, unexpected senders, registration failure,
+timeouts, and cancellation. These results do not establish long-duration
+reliability or compatibility with other devices. Post-installation camera
+validation is recorded separately after the official HACS update.

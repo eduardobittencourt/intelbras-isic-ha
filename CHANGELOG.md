@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.3.5] - 2026-10-24
+
+- Probe every discovered Cloud server instead of limiting registration to the
+  first three. Healthy endpoints later in the list can now establish the P2P
+  session when earlier servers are unavailable.
+- Bound registration to a 15-second window, retry lost heartbeats up to three
+  times, and honor cancellation while waiting for a server.
+- Add regression coverage for unavailable endpoints, packet loss, invalid
+  replies, registration failure, deadlines, and cancellation.
+
 ## [0.3.4] - 2026-10-21
 
 - Consolidate documentation into English user guides, technical reference, and
