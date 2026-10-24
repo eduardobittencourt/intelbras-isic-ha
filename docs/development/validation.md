@@ -191,5 +191,17 @@ Local validation passed 53 tests, Ruff, and formatting. Regression cases cover
 healthy endpoints after seven unavailable candidates, heartbeat retransmission,
 deduplication, invalid packets, unexpected senders, registration failure,
 timeouts, and cancellation. These results do not establish long-duration
-reliability or compatibility with other devices. Post-installation camera
-validation is recorded separately after the official HACS update.
+reliability or compatibility with other devices.
+
+The official v0.3.5 release was subsequently installed through HACS on HA
+2026.10.3. All 22 installed files matched the release commit, with no extra
+files outside Python caches. Configuration checking passed, and Core was
+restarted with the owner's authorization. The entry loaded, the bridge became
+ready, all 13 enabled entities were available, and all 14 entity registrations
+were preserved. The five sensitive diagnostic fields remained redacted.
+
+All eight cameras returned valid JPEG snapshots. Eight HLS streams decoded
+6,496 H.264 frames at 704×480 over 124 seconds with zero test errors. The final
+check found one bridge start, 178 seconds of uptime, and no Intelbras system-log
+entries. No image or video content was retained. This test does not cover
+sessions lasting days or recovery after an interruption during active video.
